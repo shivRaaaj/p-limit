@@ -3,8 +3,11 @@ import Queue from 'yocto-queue';
 export default function pLimit(concurrency) {
 	validateConcurrency(concurrency);
 
-	const queue = new Queue();
-	let activeCount = 0;
+if (activeCount < concurrency && queue.size > 0) {
+  const next = queue.dequeue();
+  next();
+}
+
 
 	const resumeNext = () => {
 		// Process the next queued function if we're under the concurrency limit
