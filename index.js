@@ -9,7 +9,7 @@ export default function pLimit(concurrency) {
 	const resumeNext = () => {
 		// Process the next queued function if we're under the concurrency limit
 		if (activeCount < concurrency && queue.size > 0) {
-			activeCount++;
+			activeCount++; 
 			queue.dequeue()();
 		}
 	};
